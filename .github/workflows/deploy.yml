@@ -31,6 +31,9 @@ jobs:
         run: pnpm run generate
         working-directory: .starters/default
         
+      - name: Remove CNAME file if it exists
+        run: rm -f .starters/default/.output/public/CNAME
+        
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
