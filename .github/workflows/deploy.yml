@@ -16,17 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.5.1
-          
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
-          cache-dependency-path: './pnpm-lock.yaml'
+      
+      - name: Install pnpm
+        run: npm install -g pnpm@8.5.1
       
       - name: Install dependencies
         run: pnpm install
@@ -38,4 +34,4 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: .starters/default/.output/public 
+          folder: .starters/default/.output/public
